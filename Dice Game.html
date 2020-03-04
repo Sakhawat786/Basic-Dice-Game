@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    div.dice
+    {
+        width: 32px;
+        background-color: darkcyan;
+        border: 3px double #ffffff;
+        border-radius: 5px;
+        color: #ffffff;
+        padding: 10px;
+        font-size: 25px;
+        text-align: center;
+        margin: 5px;
+    }
+    *
+    {
+        text-align: center;
+        align-content: center;
+        align-items: center;
+        margin: 10px;
+    }
+   
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dice Game</title>
+</head>
+<body>
+<center>
+  <b>  <div class="dice" id="die1">0</div>
+    <div class="dice" id="die2">0</div>
+    <button onclick="rollDice()" id="btn">Roll Dice</button>
+    <h2 id="status" style="clear: center;"></h2>
+    <h1>
+        Score = <span id="User_1_Score">0</span>
+    </h1>
+    <hr>
+    <button type="reset" id="Restart_user2" onclick="restart_Function_2()">Start</button>
+
+    <hr>
+    
+    <div class="dice" id="die1_user2">0</div>
+    <div class="dice" id="die2_user2">0</div>
+    <button onclick="rollDice_User2()" id="btn2">Roll Dice</button>
+    <h2 id="status2" style="clear: center;"></h2>
+    <h1>
+        Score = <span id="User_2_Score">0</span>
+    </h1></b>
+</center>
+</body>
+<script>
+              document.getElementById('btn2').disabled = true;
+              document.getElementById('btn').disabled = true;
+
+            
+function rollDice()
+{
+
+    var die1 = document.getElementById('die1');
+    var die2 = document.getElementById('die2');
+    var status = document.getElementById('status');
+    var d1 = Math.floor(Math.random()*6)+1;
+    var d2 = Math.floor(Math.random()*6)+1;
+    var diceTotal = d1 + d2;
+    document.getElementById('btn').disabled = true;
+    document.getElementById('btn2').disabled = false;
+    
+    die1.innerHTML = d1;
+    die2.innerHTML = d2;
+    status.innerHTML = "You Rolled "+diceTotal+" .";
+    if(d1 == d2)
+    {
+        status.innerHTML += "DOUBLES! You Get A Free Turn.";
+        document.getElementById('btn').disabled = false;
+     
+        
+    } 
+        var a = document.getElementById('User_1_Score');
+            a.innerHTML = diceTotal * Math.floor(Math.random()*10)*2;
+            if(a.innerHTML >= 100)
+            {
+                alert("User One Win");
+                a = document.getElementById('User_1_Score').innerHTML = 100;
+                document.getElementById('btn').disabled = true;
+                document.getElementById('btn2').disabled = true;
+                document.getElementById('Restart_user2').disabled = false;
+               
+            }
+        
+    
+}
+
+              
+              function rollDice_User2()
+              {
+              
+                  var die1 = document.getElementById('die1_user2');
+                  var die2 = document.getElementById('die2_user2');
+                  var status = document.getElementById('status2');
+                  document.getElementById('btn').disabled = false;
+                  document.getElementById('btn2').disabled = true;
+  
+                  var d1 = Math.floor(Math.random()*6)+1;
+                  var d2 = Math.floor(Math.random()*6)+1;
+                  var diceTotal = d1 + d2;
+                
+                  die1.innerHTML = d1;
+                  die2.innerHTML = d2;
+                  status.innerHTML = "You Rolled "+diceTotal+" .";
+                  if(d1 == d2)
+                  {
+                      status.innerHTML += "DOUBLES! You Get A Free Turn.";
+                      document.getElementById('btn').disabled = true;
+                      document.getElementById('btn2').disabled = false;
+                      
+                  } 
+                      var a = document.getElementById('User_2_Score');
+                          a.innerHTML = diceTotal * Math.floor(Math.random()*10)*2;
+                          if(a.innerHTML >= 100)
+                          {
+                              alert("User Two Win");
+                              a = document.getElementById('User_2_Score').innerHTML = 100;
+                              document.getElementById('btn').disabled = true;
+                              document.getElementById('btn2').disabled = true;
+                document.getElementById('Restart_user2').disabled = false;
+                             
+                          }
+                      
+                  
+              }
+              
+
+function restart_Function_2()
+                {    
+
+          var random_users = Math.floor(Math.random()*5);
+          if(random_users <= 2 )
+          {
+              alert("User One Win The Tas");
+              document.getElementById('btn').disabled = false;
+              document.getElementById('btn2').disabled = true;
+
+          }
+          if(random_users >= 2 )
+          {
+              alert("User Two Win The Tas");
+              document.getElementById('btn').disabled = true;
+              document.getElementById('btn2').disabled = false;
+
+          }
+        document.getElementById('Restart_user2').disabled = true;
+                        
+            
+            
+    }
+</script>
+</html>
